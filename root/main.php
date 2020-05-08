@@ -19,7 +19,7 @@
 	<meta charset="utf-8">
 	<title>Admin-Consorcio - Panel Administrador</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/png" href="img/img-favicon32x32.png" />
+	<link rel="icon" type="image/png" href="../img/img-favicon32x32.png" />
 	<link rel="stylesheet" href="/admin-consorcio/skeleton/css/bootstrap.min.css" >
 	<link rel="stylesheet" href="/admin-consorcio/skeleton/css/bootstrap-theme.css" >
 	<link rel="stylesheet" href="/admin-consorcio/skeleton/css/bootstrap-theme.min.css" >

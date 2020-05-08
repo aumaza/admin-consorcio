@@ -158,8 +158,7 @@ if($conn)
 			 echo "<td class='text-nowrap'>";
 			 echo '<a href="editar.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Editar</a>';
 			 echo '<a href="#" data-href="eliminar.php?id='.$fila['id'].'" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Borrar</a>';
-			 echo '<a href="upload.php?id='.$fila['id'].'" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-cog"></span> Generar Comprobante</a>';
-			 echo '<a href="open.php?comprobante='.$fila['comprobante'].'" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Ver Comprobante</a>';
+			 echo '<a href="comprobante.php?id='.$fila['id'].'" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-cog"></span> Generar Comprobante</a>';
 			 echo "</td>";
 			 echo "</tr>";
 				$i++;
