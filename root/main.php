@@ -97,7 +97,7 @@
    <div class="btn-group btn-group-justified">
     <a href="gastos/gastos.php" class="btn btn-default"><span class="pull-center "><img src="../icons/actions/view-financial-payment-mode.png"  class="img-reponsive img-rounded"> Cargar Gastos</a>
     <a href="cobros/cobros.php" class="btn btn-default"><span class="pull-center "><img src="../icons/actions/view-loan.png"  class="img-reponsive img-rounded"> Cargar Cobros</a>
-    <a href="#" class="btn btn-default"><span class="pull-center "><img src="../icons/actions/view-expenses-categories.png"  class="img-reponsive img-rounded"> Total Gastos</a>
+    <a href="total_gastos/total_gastos.php" class="btn btn-default"><span class="pull-center "><img src="../icons/actions/view-expenses-categories.png"  class="img-reponsive img-rounded"> Total Gastos</a>
     <a href="#" class="btn btn-default"><span class="pull-center "><img src="../icons/actions/view-financial-transfer.png"  class="img-reponsive img-rounded"> Saldo de Caja</a>
     <a href="#" class="btn btn-default"><span class="pull-center "><img src="../icons/actions/view-time-schedule.png"  class="img-reponsive img-rounded"> Cobros Futuros</a>
     <a href="habitantes/habitantes.php" class="btn btn-default"><span class="pull-center "><img src="../icons/actions/meeting-attending.png"  class="img-reponsive img-rounded"> Población</a>
