@@ -101,7 +101,7 @@
     <a href="#" class="btn btn-default"><span class="pull-center "><img src="../icons/actions/view-financial-transfer.png"  class="img-reponsive img-rounded"> Saldo de Caja</a>
     <a href="#" class="btn btn-default"><span class="pull-center "><img src="../icons/actions/view-time-schedule.png"  class="img-reponsive img-rounded"> Cobros Futuros</a>
     <a href="habitantes/habitantes.php" class="btn btn-default"><span class="pull-center "><img src="../icons/actions/meeting-attending.png"  class="img-reponsive img-rounded"> Población</a>
-    <a href="#" class="btn btn-default"><span class="pull-center "><img src="../icons/actions/user-group-properties.png"  class="img-reponsive img-rounded"> Usuarios</a>
+    <a href="usuarios/usuarios.php" class="btn btn-default"><span class="pull-center "><img src="../icons/actions/user-group-properties.png"  class="img-reponsive img-rounded"> Usuarios</a>
     
   
   </div>

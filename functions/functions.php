@@ -53,6 +53,7 @@ function agregarUser($nombre,$user,$pass1,$pass2,$roles){
 		echo '<div class="container">';
 		echo '<div class="alert alert-success" role="alert">';
 		echo 'Usuario Creado Satisfactoriamente';
+		echo '<hr> <a href="usuarios.php"><input type="button" value="Volver" class="btn btn-primary"></a>';
 		echo "</div>";
 		echo "</div>";
 	
@@ -64,6 +65,7 @@ function agregarUser($nombre,$user,$pass1,$pass2,$roles){
 		echo '<div class="container">';
 		echo '<div class="alert alert-warning" role="alert">';
 		echo "Las Contraseñas no Coinciden. Intente Nuevamente!";
+		echo '<hr> <a href="usuarios.php"><input type="button" value="Volver" class="btn btn-primary"></a>';
 		echo "</div>";
 		echo "</div>";
 		
@@ -125,6 +127,7 @@ function updatePass($user,$pass1,$pass2){
 			      <div class="col-md-12">';
 			echo '<div class="alert alert-success" role="alert">';
 			echo 'Password Actualizado Satisfactoriamente';
+			echo '<hr> <a href="usuarios.php"><input type="button" value="Volver" class="btn btn-primary"></a>';
 			echo "</div>";
 			echo "</div>";
 			echo "</div>";
@@ -142,6 +145,7 @@ function updatePass($user,$pass1,$pass2){
 			      <div class="col-md-12">';
 			echo '<div class="alert alert-warning" role="alert">';
 			echo "Las Contraseñas no Coinciden. Intente Nuevamente!";
+			echo '<hr> <a href="usuarios.php"><input type="button" value="Volver" class="btn btn-primary"></a>';
 			echo "</div>";
 			echo "</div>";
 			echo "</div>";
@@ -155,23 +159,41 @@ function updatePass($user,$pass1,$pass2){
     
 }
 
-function cambiarPermisos($user,$pass1,$pass2,$roles){
+function cambiarPermisos($user,$roles){
 
-  $sql = "UPDATE usuarios set roles = '$roles' where user = '$user' and password = '$pass1'";
+  $sql = "UPDATE usuarios set roles = '$roles' where user = '$user'";
   mysql_select_db('admin_csc');
   
-  if(strcmp($pass2,$pass1) == 0){
+  if($user){
     mysql_query($sql);
     echo "<br>";
+			echo '<div class="section"><br>
+			      <div class="container">
+			      <div class="row">
+			      <div class="col-md-12">';
 			echo '<div class="alert alert-success" role="alert">';
-			echo 'Permiso Actualizado Satisfactoriamente';
+			echo 'Rol Actualizado Satisfactoriamente';
+			echo '<hr> <a href="usuarios.php"><input type="button" value="Volver" class="btn btn-primary"></a>';
+			echo "</div>";
+			echo "</div>";
+			echo "</div>";
+			echo "</div>";
 			echo "</div>";
   
   }else{
-    	echo "<br>";
-	echo '<div class="alert alert-warning" role="alert">';
-	echo "Las Contraseña no Coinciden. Intente Nuevamente!";
-	echo "</div>";
+			echo "<br>";
+			echo '<div class="section"><br>
+			      <div class="container">
+			      <div class="row">
+			      <div class="col-md-12">';
+			echo '<div class="alert alert-warning" role="alert">';
+			echo "El usuario no existe. Intente Nuevamente!";
+			echo '<hr> <a href="usuarios.php"><input type="button" value="Volver" class="btn btn-primary"></a>';
+			echo "</div>";
+			echo "</div>";
+			echo "</div>";
+			echo "</div>";
+			echo "</div>";
 	}
  
 }
