@@ -8,9 +8,17 @@ function calcularTotalOrdinario()
     
          mysql_select_db('admin_csc');
             
-              $query = "select sum(g.monto) as total, month(g.fecha) as mes, year(g.fecha) as anio from gastos g where tipo_gasto = 'Ordinario' group by mes";
+            $sql = "set lc_time_names = 'es_ES'";
+             $retval = mysql_query($sql);
+              $query = "select sum(g.monto) as total, date_format(g.fecha, '%b') as mes, year(g.fecha) as anio from gastos g where tipo_gasto = 'Ordinario' group by mes";
                   $res = mysql_query($query);
-                    //$fila = mysql_fetch_array($res);
+                    
+                    
+                    
+                    //calculamos acumulado anual
+                 $qy = "select sum(g.monto) as total,  year(g.fecha) as anio from gastos g where year(g.fecha) = year(curdate()) and tipo_gasto = 'Ordinario'";
+                    $resp = mysql_query($qy);
+		      $row = mysql_fetch_array($resp);
                     
                     $count = 0;
 		    $i=0;
@@ -34,8 +42,6 @@ function calcularTotalOrdinario()
 
 			 // Listado normal
 			 echo "<tr>";
-			 //echo "<td align=center>".$fila['id']."</td>";
-			 //echo "<td align=center>".$fila['tipo_gasto']."</td>";
 			 echo "<td align=center>".$fila['total']."</td>";
 			 echo "<td align=center>".$fila['mes']."</td>";
 			 echo "<td align=center>".$fila['anio']."</td>";
@@ -50,7 +56,8 @@ function calcularTotalOrdinario()
 
 		echo "</table>";
 		echo "<br><br><hr>";
-		echo '<button type="button" class="btn btn-primary">Cantidad de Meses:  ' .$count; echo '</button>';
+		echo '<button type="button" class="btn btn-primary">Cantidad de Meses:  ' .$count; echo '</button><br><hr>';
+		echo '<button type="button" class="btn btn-primary">Acumulado:  $' .$row['total']; echo '</button>';
 
 	      
 }
@@ -61,10 +68,11 @@ function calcularTotalOrdinarioMesActual()
     
          mysql_select_db('admin_csc');
             
-            $query = "select sum(g.monto) as total, monthname(g.fecha) as mes, year(g.fecha) as anio from gastos g  where tipo_gasto = 'Ordinario' and year(g.fecha) = year(curdate()) and month(g.fecha) = month(curdate()) group by month(g.fecha)";
-              //$query = "select sum(g.monto) as total, month(g.fecha) as mes, year(g.fecha) as anio from gastos g where tipo_gasto = 'Ordinario' group by mes";
-                  $res = mysql_query($query);
-                    //$fila = mysql_fetch_array($res);
+        $sql = "set lc_time_names = 'es_ES'";
+          $retval = mysql_query($sql);
+            $query = "select sum(g.monto) as total, date_format(g.fecha, '%b') as mes, year(g.fecha) as anio from gastos g  where tipo_gasto = 'Ordinario' and year(g.fecha) = year(curdate()) and month(g.fecha) = month(curdate()) group by month(g.fecha)";
+              $res = mysql_query($query);
+                    
                     
                     $count = 0;
 		    $i=0;
@@ -116,9 +124,15 @@ function calcularTotalExtraordinario()
         
          mysql_select_db('admin_csc');
             
-              $query = "select sum(g.monto) as total, month(g.fecha) as mes, year(g.fecha) as anio from gastos g where tipo_gasto = 'Extraordinario' group by mes";
+            $sql = "set lc_time_names = 'es_ES'";
+             $retval = mysql_query($sql);
+                $query = "select sum(g.monto) as total, date_format(g.fecha, '%b') as mes, year(g.fecha) as anio from gastos g where tipo_gasto = 'Extraordinario' group by mes";
                   $res = mysql_query($query);
-                    //$fila = mysql_fetch_array($res);
+                    
+                    //calculamos acumulado anual
+                 $qy = "select sum(g.monto) as total,  year(g.fecha) as anio from gastos g where year(g.fecha) = year(curdate()) and tipo_gasto = 'Extraordinario'";
+                    $resp = mysql_query($qy);
+		      $row = mysql_fetch_array($resp);
                     
                     $count = 0;
 		    $i=0;
@@ -158,7 +172,8 @@ function calcularTotalExtraordinario()
 
 		echo "</table>";
 		echo "<br><br><hr>";
-		echo '<button type="button" class="btn btn-primary">Cantidad de Meses:  ' .$count; echo '</button>';
+		echo '<button type="button" class="btn btn-primary">Cantidad de Meses:  ' .$count; echo '</button><br><hr>';
+		echo '<button type="button" class="btn btn-primary">Acumulado:  $' .$row['total']; echo '</button>';
 }
 
 function calcularTotalExtraordinarioMesActual()
@@ -166,7 +181,9 @@ function calcularTotalExtraordinarioMesActual()
     
          mysql_select_db('admin_csc');
             
-            $query = "select sum(g.monto) as total, monthname(g.fecha) as mes, year(g.fecha) as anio from gastos g  where tipo_gasto = 'Extraordinario' and year(g.fecha) = year(curdate()) and month(g.fecha) = month(curdate()) group by month(g.fecha)";
+         $sql = "set lc_time_names = 'es_ES'";
+          $retval = mysql_query($sql);
+            $query = "select sum(g.monto) as total, date_format(g.fecha, '%b') as mes, year(g.fecha) as anio from gastos g  where tipo_gasto = 'Extraordinario' and year(g.fecha) = year(curdate()) and month(g.fecha) = month(curdate()) group by month(g.fecha)";
              $res = mysql_query($query);
                   
                     $count = 0;
@@ -216,7 +233,11 @@ function guardarTotalGastosOrdinarios(){
 
       mysql_select_db('admin_csc'); 
         
-            $query = "select sum(g.monto) as total, month(g.fecha) as mes, year(g.fecha) as anio from gastos g where tipo_gasto = 'Ordinario' group by mes";
+        
+         $sql = "set lc_time_names = 'es_ES'";
+             $retval = mysql_query($sql);
+        
+            $query = "select sum(g.monto) as total, date_format(g.fecha, '%b') as mes, year(g.fecha) as anio from gastos g where tipo_gasto = 'Ordinario' group by mes";
                   $res = mysql_query($query);
                 
             while($fila = mysql_fetch_array($res)){
@@ -250,9 +271,10 @@ function guardarTotalGastosOrdinariosMesActual(){
 
       mysql_select_db('admin_csc'); 
         
-            $query = "select sum(g.monto) as total, month(g.fecha) as mes, year(g.fecha) as anio from gastos g  where tipo_gasto = 'Ordinario' and year(g.fecha) = year(curdate()) and month(g.fecha) = month(curdate()) group by month(g.fecha)";
-            //$query = "select sum(g.monto) as total, month(g.fecha) as mes, year(g.fecha) as anio from gastos g where tipo_gasto = 'Ordinario' group by mes";
-                  $res = mysql_query($query);
+         $sql = "set lc_time_names = 'es_ES'";
+           $retval = mysql_query($sql);
+             $query = "select sum(g.monto) as total, date_format(g.fecha, '%b') as mes, year(g.fecha) as anio from gastos g  where tipo_gasto = 'Ordinario' and year(g.fecha) = year(curdate()) and month(g.fecha) = month(curdate()) group by month(g.fecha)";
+               $res = mysql_query($query);
                 
             while($fila = mysql_fetch_array($res)){
 	      
@@ -285,7 +307,10 @@ function guardarTotalGastosExtraordinarios(){
 
       mysql_select_db('admin_csc'); 
         
-            $query = "select sum(g.monto) as total, month(g.fecha) as mes, year(g.fecha) as anio from gastos g where tipo_gasto = 'Extraordinario' group by mes";
+        
+         $sql = "set lc_time_names = 'es_ES'";
+           $retval = mysql_query($sql);
+            $query = "select sum(g.monto) as total, date_format(g.fecha '%b') as mes, year(g.fecha) as anio from gastos g where tipo_gasto = 'Extraordinario' group by mes";
                   $res = mysql_query($query);
                 
 
@@ -319,9 +344,11 @@ function guardarTotalGastosExtraordinariosMesActual(){
 
       mysql_select_db('admin_csc'); 
         
-           $query = "select sum(g.monto) as total, monthname(g.fecha) as mes, year(g.fecha) as anio from gastos g  where tipo_gasto = 'Extraordinario' and year(g.fecha) = year(curdate()) and month(g.fecha) = month(curdate()) group by month(g.fecha)";
-           //$query = "select sum(g.monto) as total, month(g.fecha) as mes, year(g.fecha) as anio from gastos g where tipo_gasto = 'Extraordinario' group by mes";
-                  $res = mysql_query($query);
+        
+         $sql = "set lc_time_names = 'es_ES'";
+          $retval = mysql_query($sql);
+            $query = "select sum(g.monto) as total, date_format(g.fecha, '%b') as mes, year(g.fecha) as anio from gastos g  where tipo_gasto = 'Extraordinario' and year(g.fecha) = year(curdate()) and month(g.fecha) = month(curdate()) group by month(g.fecha)";
+               $res = mysql_query($query);
                 
 
             while( $fila = mysql_fetch_array($res)){       
@@ -359,7 +386,7 @@ function createTable(){
                "id INT AUTO_INCREMENT,".
                "tipo_gasto VARCHAR(14) NOT NULL,".
                "total FLOAT(10,2) NOT NULL,".
-               "mes VARCHAR(2) NOT NULL,".
+               "mes VARCHAR(6) NOT NULL,".
                "anio VARCHAR(4) NOT NULL,".
                "PRIMARY KEY (id)); ";
 
