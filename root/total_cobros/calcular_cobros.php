@@ -19,7 +19,7 @@
 
 <html style="height: 100%"><head>
 	<meta charset="utf-8">
-	<title>Calcular Total Gastos</title>
+	<title>Calcular Total Cobros</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="../../img/img-favicon32x32.png" />
 	<link rel="stylesheet" href="/admin-consorcio/skeleton/css/bootstrap.min.css" >
@@ -74,64 +74,40 @@
                     <div class="col-md-12">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h1 class="panel-title text-center" contenteditable="true">Calcular Total Gastos</h1>
+                                <h1 class="panel-title text-center" contenteditable="true">Calcular Total Cobros</h1>
                             </div>
                             <div class="panel-body">
-                            <a href="total_gastos.php"><input type="button" value="Volver a Total Gastos" class="btn btn-warning"></a>
+                            <a href="total_cobros.php"><input type="button" value="Volver a Total Cobros" class="btn btn-warning"></a>
                             </div>
                         </div>
                         
-      <form action="calcular_gastos.php" method="post">
+      <form action="calcular_cobros.php" method="post">
        <div class="row">
  
    <div class="col-sm-6">
   <div class="panel panel-default">
-	    <div class="panel-heading"><strong>Total Gastos Ordinarios por Meses</strong></div>
+	    <div class="panel-heading"><strong>Total Cobros por Meses</strong></div>
 	      <div class="panel-body">
 	         
 	  <button type="submit" class="btn btn-primary navbar-btn" name="A"><span class="glyphicon glyphicon-plus"></span> Calcular</button>
-	  <button type="submit" class="btn btn-success navbar-btn" name="B"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
-	
+	  	
 	</div>
      </div>
    </div>
    
    <div class="col-sm-6">
   <div class="panel panel-default">
-	    <div class="panel-heading"><strong>Total Gastos Ordinarios Mes Actual</strong></div>
+	    <div class="panel-heading"><strong>Total Cobros Mes Actual</strong></div>
 	      <div class="panel-body">
 	         
-	  <button type="submit" class="btn btn-primary navbar-btn" name="E"><span class="glyphicon glyphicon-plus"></span> Calcular</button>
-	  <button type="submit" class="btn btn-success navbar-btn" name="F"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+	  <button type="submit" class="btn btn-primary navbar-btn" name="B"><span class="glyphicon glyphicon-plus"></span> Calcular</button>
+	  <button type="submit" class="btn btn-success navbar-btn" name="C"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
 	
 	</div>
      </div>
    </div>
    
-   <div class="col-sm-6">
-  <div class="panel panel-default">
-	    <div class="panel-heading"><strong>Total Gastos Extraordinarios por Meses</strong></div>
-	      <div class="panel-body">
-	         
-	  <button type="submit" class="btn btn-primary navbar-btn" name="C"><span class="glyphicon glyphicon-plus"></span> Calcular</button>
-	  <button type="submit" class="btn btn-success navbar-btn" name="D"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
-	
-	</div>
-     </div>
-   </div>
    
-   <div class="col-sm-6">
-  <div class="panel panel-default">
-	    <div class="panel-heading"><strong>Total Gastos Extraordinarios Mes Actual</strong></div>
-	      <div class="panel-body">
-	         
-	  <button type="submit" class="btn btn-primary navbar-btn" name="G"><span class="glyphicon glyphicon-plus"></span> Calcular</button>
-	  <button type="submit" class="btn btn-success navbar-btn" name="H"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
-	
-	</div>
-     </div>
-   </div>
- 
 
 </div>
 
@@ -146,45 +122,24 @@ if($conn)
                
                case isset($_POST['A']):
 
-                    calcularTotalOrdinario();
+                    calcularTotalCobros();
                     break;
 
 
                case isset($_POST['B']):
 
-                    guardarTotalGastosOrdinarios();
+                    calcularTotalCobrosMesActual();
                     break;
 
                 case isset($_POST['C']):
 
-                    calcularTotalExtraordinario();
+                    guardarTotalCobrosMesActual();
                     break;
 
                 case isset($_POST['D']):
 
-                    guardarTotalGastosExtraordinarios();
+                    //guardarTotalGastosExtraordinarios();
                     break;
-                    
-                case isset($_POST['E']):
-
-                    calcularTotalOrdinarioMesActual();
-                    break;
-
-                case isset($_POST['F']):
-
-                    guardarTotalGastosOrdinariosMesActual();
-                    break;
-                    
-                case isset($_POST['G']):
-
-                    calcularTotalExtraordinarioMesActual();
-                    break;
-
-                case isset($_POST['H']):
-
-                    guardarTotalGastosExtraordinariosMesActual();
-                    break;
-             
                 
        }
 
