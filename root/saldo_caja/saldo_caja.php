@@ -17,7 +17,7 @@
 
 <html><head>
 	<meta charset="utf-8">
-	<title>Gastos Totales</title>
+	<title>Saldos de Caja</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="../../img/img-favicon32x32.png" />
 	<link rel="stylesheet" href="/admin-consorcio/skeleton/css/bootstrap.min.css" >
@@ -100,14 +100,14 @@
     <span class="icon-bar"></span>
     <span class="icon-bar"></span>
   </button>
-  <a class="navbar-brand"><span class="pull-center "><img src="../../icons/actions/view-expenses-categories.png"  class="img-reponsive img-rounded"><strong> Total Gastos </strong></a>
+  <a class="navbar-brand"><span class="pull-center "><img src="../../icons/actions/view-financial-transfer.png"  class="img-reponsive img-rounded"><strong> Saldos de Caja </strong></a>
 </div>
 
 <!-- COLLAPSIBLE NAVBAR -->
 <div class="collapse navbar-collapse" id="alignment-example">
 <!-- Links -->
     <ul class="nav navbar-nav navbar-right">
-      <li class="active" ><a href="calcular_gastos.php">Calcular Gastos Totales <span class="pull-center "><img src="../../icons/actions/view-bank-account-checking.png"  class="img-reponsive img-rounded"></a></li>
+      <li class="active" ><a href="calcular_saldo_caja.php">Calcular Saldos de Caja <span class="pull-center "><img src="../../icons/actions/view-bank-account-checking.png"  class="img-reponsive img-rounded"></a></li>
     </ul>
 <!-- Search -->
 </div>
@@ -119,7 +119,7 @@
 
 if($conn)
 {
-	$sql = "SELECT * FROM total_gastos";
+	$sql = "SELECT * FROM saldo_caja";
     	mysql_select_db('admin_csc');
     	$resultado = mysql_query($sql,$conn);
 	//mostramos fila x fila
@@ -132,10 +132,8 @@ if($conn)
               echo "<thead>
 
                     <th class='text-nowrap text-center'>ID</th>
-                    <th class='text-nowrap text-center'>Tipo de Gasto</th>
-                    <th class='text-nowrap text-center'>Monto Total</th>
-                    <th class='text-nowrap text-center'>Mes</th>
-                    <th class='text-nowrap text-center'>Año</th>
+                    <th class='text-nowrap text-center'>Monto</th>
+                    <th class='text-nowrap text-center'>Fecha</th>
                     <th>&nbsp;</th>
                     </thead>";
 
@@ -147,10 +145,8 @@ if($conn)
 			 // Listado normal
 			 echo "<tr>";
 			 echo "<td align=center>".$fila['id']."</td>";
-			 echo "<td align=center>".$fila['tipo_gasto']."</td>";
 			 echo "<td align=center>".$fila['total']."</td>";
-			 echo "<td align=center>".$fila['mes']."</td>";
-			 echo "<td align=center>".$fila['anio']."</td>";
+			 echo "<td align=center>".$fila['fecha']."</td>";
 			 echo "<td class='text-nowrap'>";
 			 echo "</td>";
 			 echo "</tr>";

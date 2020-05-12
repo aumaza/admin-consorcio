@@ -78,7 +78,7 @@
 	</div>
 	<hr>
 
-<div class="container-fluid"><br>
+<div class="container"><br>
 <div class="row">
 <div class="col-sm-12">
 
