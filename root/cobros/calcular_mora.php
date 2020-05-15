@@ -14,12 +14,18 @@
 	echo '<a href="../../index.html"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a>';	
 	die();
 	}
+	
+      $id = $_GET['id'];
+      $sql = "SELECT * FROM cobros WHERE id = '$id'";
+      mysql_select_db('admin_csc');
+      $resultado = mysql_query($sql,$conn);
+      $fila = mysql_fetch_assoc($resultado);
 
 ?>
 
 <html style="height: 100%"><head>
 	<meta charset="utf-8">
-	<title>Calcular Saldo de Caja</title>
+	<title>Calcular Mora</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="../../img/img-favicon32x32.png" />
 	<link rel="stylesheet" href="/admin-consorcio/skeleton/css/bootstrap.min.css" >
@@ -87,30 +93,54 @@
                     <div class="col-md-12">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h1 class="panel-title text-center" contenteditable="true">Calcular Saldo de Caja</h1>
+                                <h1 class="panel-title text-center" contenteditable="true">Calcular Mora</h1>
                             </div>
                             <div class="panel-body">
-                            <a href="saldo_caja.php"><input type="button" value="Volver a Saldo de Caja" class="btn btn-warning"></a>
+                            <a href="cobros.php"><input type="button" value="Volver a Cobros" class="btn btn-warning"></a>
                             </div>
                         </div>
                         
-      <form action="calcular_saldo_caja.php" method="post">
+      <form action="calcular_mora.php" method="post">
+      <input type="hidden" id="id" name="id" value="<?php echo $fila['id']; ?>" />
        <div class="row">
  
-   <div class="col-sm-12">
+   <div class="col-sm-6">
   <div class="panel panel-default">
-	    <div class="panel-heading"><strong>Calcular Saldo de Caja</strong></div>
+	    <div class="panel-heading"><strong>Datos Deudor</strong></div>
+	      <div class="panel-body">
+	         
+	  <div class="input-group">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+    <input id="text" type="text" class="form-control" name="nombre" value="<?php echo $fila['nombreApellido']; ?>" readonly>
+  </div>
+  
+  <div class="input-group">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+    <input id="text" type="text" class="form-control" name="dpto" value="<?php echo $fila['departamento']; ?>" readonly>
+  </div>
+  
+  <div class="input-group">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+    <input  type="text" class="form-control" name="monto" value="<?php echo $fila['monto']; ?>" readonly>
+  </div>
+	  	
+	</div>
+     </div>
+   </div>
+   
+   <div class="col-sm-6">
+  <div class="panel panel-default">
+	    <div class="panel-heading"><strong>Calcular Mora</strong></div>
 	      <div class="panel-body">
 	         
 	  <button type="submit" class="btn btn-primary navbar-btn" name="A"><span class="glyphicon glyphicon-plus"></span> Calcular</button>
-	  <button type="submit" class="btn btn-success navbar-btn" name="B"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+	  <button type="submit" class="btn btn-primary navbar-btn" name="B"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
 	
 	</div>
      </div>
    </div>
    
- 
- 
+   
 
 </div>
 
@@ -124,17 +154,25 @@ if($conn)
 	switch (isset($_POST)){
                
                case isset($_POST['A']):
-
-                    calcularSaldoCaja();
+               
+		    $nombre = mysql_real_escape_string($_POST["nombre"], $conn);
+		    $dpto = mysql_real_escape_string($_POST["dpto"], $conn);
+		    $monto = mysql_real_escape_string($_POST["monto"], $conn);
+		    
+                    calcularMora($nombre,$dpto,$monto);
                     break;
 
 
                case isset($_POST['B']):
+               
+		    $nombre = mysql_real_escape_string($_POST["nombre"], $conn);
+		    $dpto = mysql_real_escape_string($_POST["dpto"], $conn);
+		    $monto = mysql_real_escape_string($_POST["monto"], $conn);
 
-                    guardarSaldoCaja();
+                    guardarMora($nombre,$dpto,$monto);
                     break;
-             
-                
+
+                                
        }
 
 

@@ -10,20 +10,18 @@ function calcularSaldoCaja()
             
             $sql = "set lc_time_names = 'es_ES'";
              $retval = mysql_query($sql);
-              $query = "select totalCobros - totalGastos as cajaFinal from (select (select sum(monto) from cobros where month(fecha) = month(curdate()) and year(fecha) = year(curdate())) as totalCobros, (select sum(monto) from gastos where month(fecha) = month(curdate()) and year(fecha) = year(curdate())) as totalGastos) as caja";
+              $query = "select totalCobros - totalGastos as cajaFinal from (select (select sum(monto) from cobros where estado = 'Pago' and month(fecha) = month(curdate()) and year(fecha) = year(curdate())) as totalCobros, (select sum(monto) from gastos where month(fecha) = month(curdate()) and year(fecha) = year(curdate())) as totalGastos) as caja";
                   $res = mysql_query($query);
-                    
-                    
-                    
-                /*    //calculamos acumulado anual
-                 $qy = "select sum(g.monto) as total,  year(g.fecha) as anio from gastos g where year(g.fecha) = year(curdate()) and tipo_gasto = 'Ordinario'";
-                    $resp = mysql_query($qy);
-		      $row = mysql_fetch_array($resp);*/
-                    
+                               
                     $count = 0;
 		    $i=0;
 		    $date = strftime("%Y-%m-%d");
-		    //echo $date;
+		    
+		    echo '<div class="container">
+			    <div class="row">
+			       <div class="col-sm-12">
+			         <div class="panel panel-default" >
+			           <div class="panel-body">';
 		    
 		  echo "<hr>";
 		  echo '<div class="alert alert-success" role="alert">';
@@ -58,7 +56,7 @@ function calcularSaldoCaja()
 		echo "<br><br><hr>";
 		echo '<button type="button" class="btn btn-primary">Cantidad de Meses:  ' .$count; echo '</button><br><hr>';
 		//echo '<button type="button" class="btn btn-primary">Acumulado:  $' .$row['total']; echo '</button>';
-
+		echo '</div></div></div></div></div>';
 	      
 }
 

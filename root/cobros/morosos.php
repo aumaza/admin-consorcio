@@ -17,7 +17,7 @@
 
 <html><head>
 	<meta charset="utf-8">
-	<title>Cobros</title>
+	<title>Morosos</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="../../img/img-favicon32x32.png" />
 	<link rel="stylesheet" href="/admin-consorcio/skeleton/css/bootstrap.min.css" >
@@ -100,15 +100,14 @@
     <span class="icon-bar"></span>
     <span class="icon-bar"></span>
   </button>
-  <a class="navbar-brand"><span class="pull-center "><img src="../../icons/actions/view-loan.png"  class="img-reponsive img-rounded"><strong> Cobros </strong></a>
+  <a class="navbar-brand"><span class="pull-center "><img src="../../icons/status/meeting-participant-reply.png"  class="img-reponsive img-rounded"><strong> Morosos </strong></a>
 </div>
 
 <!-- COLLAPSIBLE NAVBAR -->
 <div class="collapse navbar-collapse" id="alignment-example">
 <!-- Links -->
     <ul class="nav navbar-nav navbar-right">
-    <li class="active" ><a href="morosos.php">Morosos <span class="pull-center "><img src="../../icons/status/meeting-participant-reply.png"  class="img-reponsive img-rounded"></a></li>
-      <li class="active" ><a href="nuevoRegistro.php">Ingresar Cobro <span class="pull-center "><img src="../../icons/actions/list-add.png"  class="img-reponsive img-rounded"></a></li>
+      <li class="active" ><a href="reporte.php">Generar Reporte <span class="pull-center "><img src="../../icons/actions/story-editor.png"  class="img-reponsive img-rounded"></a></li>
     </ul>
 <!-- Search -->
 </div>
@@ -120,11 +119,17 @@
 
 if($conn)
 {
-	$sql = "SELECT * FROM cobros";
+	$sql = "SELECT * FROM mora";
     	mysql_select_db('admin_csc');
     	$resultado = mysql_query($sql,$conn);
 	//mostramos fila x fila
-
+	
+	//calculamos acumulado
+	$qy = "select sum(total) as acumulado from mora where monthname(fecha) = monthname(curdate()) and year(fecha) = year(curdate())";
+                    $resp = mysql_query($qy);
+		      $row = mysql_fetch_array($resp);
+		      $acumulado = $row[acumulado];
+	
 	echo '<br><br>';
 
    	$count = 0;
@@ -133,11 +138,11 @@ if($conn)
               echo "<thead>
 
                     <th class='text-nowrap text-center'>ID</th>
-                    <th class='text-nowrap text-center'>Habitante</th>
-                    <th class='text-nowrap text-center'>Unidad Funcional</th>
+                    <th class='text-nowrap text-center'>Nombre y Apellido</th>
                     <th class='text-nowrap text-center'>Departamento</th>
                     <th class='text-nowrap text-center'>Monto</th>
-                    <th class='text-nowrap text-center'>Estado</th>
+                    <th class='text-nowrap text-center'>Interes en $</th>
+                    <th class='text-nowrap text-center'>Total</th>
                     <th class='text-nowrap text-center'>Fecha</th>
                     <th>&nbsp;</th>
                     </thead>";
@@ -151,18 +156,12 @@ if($conn)
 			 echo "<tr>";
 			 echo "<td align=center>".$fila['id']."</td>";
 			 echo "<td align=center>".$fila['nombreApellido']."</td>";
-			 echo "<td align=center>".$fila['uni_func']."</td>";
 			 echo "<td align=center>".$fila['departamento']."</td>";
 			 echo "<td align=center>".$fila['monto']."</td>";
-			 echo "<td align=center>".$fila['estado']."</td>";
+			 echo "<td align=center>".$fila['interes']."</td>";
+			 echo "<td align=center>".$fila['total']."</td>";
 			 echo "<td align=center>".$fila['fecha']."</td>";
 			 echo "<td class='text-nowrap'>";
-			 echo '<a href="editar.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Editar</a>';
-			 echo '<a href="#" data-href="eliminar.php?id='.$fila['id'].'" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Borrar</a>';
-			 echo '<a href="comprobante.php?id='.$fila['id'].'" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-cog"></span> Generar Comprobante</a>';
-			 if($fila['estado'] == "Debe"){
-			   echo '<a href="calcular_mora.php?id='.$fila['id'].'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-plus"></span> Calcular Mora</a>';
-			  }
 			 echo "</td>";
 			 echo "</tr>";
 				$i++;
@@ -174,9 +173,10 @@ if($conn)
 
 		echo "</table>";
 	    echo "<br><br><hr>";
-	    echo '<button type="button" class="btn btn-primary">Cantidad de Registros:  ' .$count; echo '</button>';
+	    echo '<button type="button" class="btn btn-warning">Cantidad de Registros:  ' .$count; echo '</button><br><br>';
+	    echo '<button type="button" class="btn btn-warning">Acumulado:  ' .$acumulado; echo '</button>';
 
-	      echo '<hr> <a href="../main.php"><input type="button" value="Volver al Menú Principal" class="btn btn-primary"></a>';
+	      echo '<hr> <a href="cobros.php"><input type="button" value="Volver a Cobros" class="btn btn-primary"></a>';
 		}
 
 

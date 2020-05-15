@@ -66,7 +66,20 @@
 	
 	
 </head>
-<body >
+<body background="../../img/background.jpg" class="img-fluid" alt="Responsive image" style="background-repeat: no-repeat; background-position: center center; background-size: cover; height: 100%">
+
+<div class="container-fluid">
+      <div class="row">
+      <div class="col-md-12 text-center"><br>
+	<button><span class="glyphicon glyphicon-user"></span> Usuario: <?php echo $_SESSION['user'] ?></button>
+	<?php setlocale(LC_ALL,"es_ES"); ?>
+	<button><span class="glyphicon glyphicon-time"></span> <?php echo "Hora Actual: " . date("H:i"); ?></button>
+	 <?php setlocale(LC_ALL,"es_ES"); ?>
+	<button><span class="glyphicon glyphicon-calendar"></span> <?php echo "Fecha Actual: ". strftime("%A %d de %B del %Y"); ?> </button>
+	</div>
+	</div>
+	</div>
+	<hr>
 
 <div class="section"><br>
             <div class="container">

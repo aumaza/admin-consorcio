@@ -11,11 +11,11 @@ function calcularTotalCobros()
             //calcula acumulado por cada mes
              $sql = "set lc_time_names = 'es_ES'";
              $retval = mysql_query($sql);
-             $query = "select sum(c.monto) as total, date_format(c.fecha, '%b') as mes, year(c.fecha) as anio from cobros c where year(c.fecha) = year(curdate()) group by month(c.fecha);";
+             $query = "select sum(c.monto) as total, date_format(c.fecha, '%b') as mes, year(c.fecha) as anio from cobros c where estado = 'Pago' and year(c.fecha) = year(curdate()) group by month(c.fecha);";
                $res = mysql_query($query);
                  
                  //calculamos acumulado anual
-                 $qy = "select sum(c.monto) as total,  year(c.fecha) as anio from cobros c where year(c.fecha) = year(curdate())";
+                 $qy = "select sum(c.monto) as total,  year(c.fecha) as anio from cobros c where estado = 'Pago' and year(c.fecha) = year(curdate())";
                     $resp = mysql_query($qy);
 		      $row = mysql_fetch_array($resp);
 		      
@@ -23,7 +23,13 @@ function calcularTotalCobros()
                     $count = 0;
 		    $i=0;
 		    
-		  echo "<hr>";
+		  echo '<div class="container">
+			  <div class="row">
+			     <div class="col-sm-12">
+			       <div class="panel panel-default" >
+			         <div class="panel-body">';
+		 
+		 echo "<hr>";
 		  echo '<div class="alert alert-success" role="alert">';
                   echo '<h3>Total Cobros por Meses</h3>';
                   echo "</div><hr>";
@@ -58,6 +64,8 @@ function calcularTotalCobros()
 		echo "<br><br><hr>";
 		echo '<button type="button" class="btn btn-primary">Cantidad de Meses:  ' .$count; echo '</button><br><hr>';
 		echo '<button type="button" class="btn btn-primary">Acumulado Anual:  $' .$row['total']; echo '</button>';
+		
+		echo '</div></div></div></div></div>';
 
 	      
 }
@@ -70,12 +78,19 @@ function calcularTotalCobrosMesActual()
          
          $sql = "set lc_time_names = 'es_ES'";
              $retval = mysql_query($sql);   
-		$query = "select sum(c.monto) as total, date_format(c.fecha, '%b') as mes, year(c.fecha) as anio from cobros c where year(c.fecha) = year(curdate()) and month(c.fecha) = month(curdate()) group by month(c.fecha)";
+		$query = "select sum(c.monto) as total, date_format(c.fecha, '%b') as mes, year(c.fecha) as anio from cobros c where estado = 'Pago' and year(c.fecha) = year(curdate()) and month(c.fecha) = month(curdate()) group by month(c.fecha)";
 		    $res = mysql_query($query);
                     
                     
                     $count = 0;
 		    $i=0;
+		    
+		  echo '<div class="container">
+			  <div class="row">
+			     <div class="col-sm-12">
+			       <div class="panel panel-default" >
+			         <div class="panel-body">';  
+		    
 		    
 		  echo "<hr>";
 		  echo '<div class="alert alert-success" role="alert">';
@@ -111,6 +126,7 @@ function calcularTotalCobrosMesActual()
 		echo "</table>";
 		echo "<br><br><hr>";
 		echo '<button type="button" class="btn btn-primary">Cantidad Registros:  ' .$count; echo '</button>';
+		echo '</div></div></div></div></div>';
 
 	      
 }
@@ -124,7 +140,7 @@ function guardarTotalCobrosMesActual(){
         
             $sql = "set lc_time_names = 'es_ES'";
              $retval = mysql_query($sql);   
-		$query = "select sum(c.monto) as total, date_format(c.fecha, '%b') as mes, year(c.fecha) as anio from cobros c where year(c.fecha) = year(curdate()) and month(c.fecha) = month(curdate()) group by month(c.fecha)";
+		$query = "select sum(c.monto) as total, date_format(c.fecha, '%b') as mes, year(c.fecha) as anio from cobros c where estado = 'Pago' and year(c.fecha) = year(curdate()) and month(c.fecha) = month(curdate()) group by month(c.fecha)";
             
                   $res = mysql_query($query);
                 

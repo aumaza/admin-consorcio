@@ -23,6 +23,12 @@ function calcularTotalOrdinario()
                     $count = 0;
 		    $i=0;
 		    
+		    echo '<div class="container">
+			    <div class="row">
+			       <div class="col-sm-12">
+			         <div class="panel panel-default" >
+			           <div class="panel-body">';
+		    
 		  echo "<hr>";
 		  echo '<div class="alert alert-success" role="alert">';
                   echo '<h3>Total Gastos Ordinarios</h3>';
@@ -58,6 +64,7 @@ function calcularTotalOrdinario()
 		echo "<br><br><hr>";
 		echo '<button type="button" class="btn btn-primary">Cantidad de Meses:  ' .$count; echo '</button><br><hr>';
 		echo '<button type="button" class="btn btn-primary">Acumulado:  $' .$row['total']; echo '</button>';
+		echo '</div></div></div></div></div>';
 
 	      
 }
@@ -76,6 +83,12 @@ function calcularTotalOrdinarioMesActual()
                     
                     $count = 0;
 		    $i=0;
+		    
+		    echo '<div class="container">
+			    <div class="row">
+			       <div class="col-sm-12">
+			         <div class="panel panel-default" >
+			           <div class="panel-body">';
 		    
 		  echo "<hr>";
 		  echo '<div class="alert alert-success" role="alert">';
@@ -113,6 +126,7 @@ function calcularTotalOrdinarioMesActual()
 		echo "</table>";
 		echo "<br><br><hr>";
 		echo '<button type="button" class="btn btn-primary">Cantidad Registros:  ' .$count; echo '</button>';
+		echo '</div></div></div></div></div>';
 
 	      
 }
@@ -136,6 +150,12 @@ function calcularTotalExtraordinario()
                     
                     $count = 0;
 		    $i=0;
+		    
+		    echo '<div class="container">
+			    <div class="row">
+			       <div class="col-sm-12">
+			         <div class="panel panel-default" >
+			           <div class="panel-body">';
 		    
 		  echo "<hr>";
 		  echo '<div class="alert alert-success" role="alert">';
@@ -174,6 +194,7 @@ function calcularTotalExtraordinario()
 		echo "<br><br><hr>";
 		echo '<button type="button" class="btn btn-primary">Cantidad de Meses:  ' .$count; echo '</button><br><hr>';
 		echo '<button type="button" class="btn btn-primary">Acumulado:  $' .$row['total']; echo '</button>';
+		echo '</div></div></div></div></div>';
 }
 
 function calcularTotalExtraordinarioMesActual()
@@ -188,6 +209,12 @@ function calcularTotalExtraordinarioMesActual()
                   
                     $count = 0;
 		    $i=0;
+		    
+		    echo '<div class="container">
+			    <div class="row">
+			       <div class="col-sm-12">
+			         <div class="panel panel-default" >
+			           <div class="panel-body">';
 		    
 		  echo "<hr>";
 		  echo '<div class="alert alert-success" role="alert">';
@@ -223,6 +250,7 @@ function calcularTotalExtraordinarioMesActual()
 		echo "</table>";
 		echo "<br><br><hr>";
 		echo '<button type="button" class="btn btn-primary">Cantidad Registros:  ' .$count; echo '</button>';
+		echo '</div></div></div></div></div>';
 
 	      
 }
