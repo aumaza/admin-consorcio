@@ -132,7 +132,8 @@
   <div class="panel panel-default">
 	    <div class="panel-heading"><strong>Calcular Mora</strong></div>
 	      <div class="panel-body">
-	         
+	    <!-- Trigger the modal with a button -->
+	  <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-exclamation-sign"></span> Importante</button><br><hr>    
 	  <button type="submit" class="btn btn-primary navbar-btn" name="A"><span class="glyphicon glyphicon-plus"></span> Calcular</button>
 	  <button type="submit" class="btn btn-primary navbar-btn" name="B"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
 	
@@ -195,6 +196,31 @@ if($conn)
 </div>
 </div>
 </div>
+
+<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Importante</h4>
+        </div>
+        <div class="modal-body" align="center">
+          <p>Para calcular los intereses por mora, presione "Calcular".</p>
+	  <p>Si desea guardar lo calculado, presione el botón "Volver" del navegador</p>
+	  <p>de manera que vuelvan a cargarse los datos a guardar y finalmente presione el botón "Guardar".</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> Cerrar</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
 </div>
 
 
